@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.TestExecutor;
 
 public class MyDemo extends TestExecutor {
@@ -16,7 +16,9 @@ public class MyDemo extends TestExecutor {
 	@Given("As a user I launch browser enter url of IHG")
 	public void as_a_user_I_launch_browser_enter_url_of_IHG() {
 		try {
-			WebDriverManager.chromedriver().setup();
+			// WebDriverManager.chromedriver().setup();
+			System.setProperty("webdriver.chrome.driver",
+					"C:\\Users\\devisri.g\\Documents\\IHG\\My_ID\\chromedriver.exe");
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
 			driver.get("http://myid-int.ihg.com");
@@ -29,47 +31,47 @@ public class MyDemo extends TestExecutor {
 	@When("user enters username and password")
 	public void user_enters_username_and_password() {
 
-		driver.findElement(By.xpath(corpUser_Obj.username)).clear();
-		driver.findElement(By.xpath(corpUser_Obj.username)).sendKeys("yerrams");
+		driver.findElement(By.xpath(corpUserObj.username)).clear();
+		driver.findElement(By.xpath(corpUserObj.username)).sendKeys("yerrams");
 
-		driver.findElement(By.xpath(corpUser_Obj.password)).clear();
-		driver.findElement(By.xpath(corpUser_Obj.password)).sendKeys("P@ssw0rd1");
+		driver.findElement(By.xpath(corpUserObj.password)).clear();
+		driver.findElement(By.xpath(corpUserObj.password)).sendKeys("P@ssw0rd1");
 
-		driver.findElement(By.xpath(corpUser_Obj.login)).click();
+		driver.findElement(By.xpath(corpUserObj.login)).click();
 		common.waitExplicitlyForPageToLoad("Home", 60);
 
 	}
 
 	@Then("IHG Home page should display")
 	public void ihg_Home_page_should_display() {
-		common.isElementExist(corpUser_Obj.landingPageLogo, "landingPageLogo");
+		common.isElementExist(corpUserObj.landingPageLogo, "landingPageLogo");
 	}
 
 	@Then("click on Intelligence")
 	public void click_on_Intelligence() {
-		common.isElementExist(corpUser_Obj.intelligence, "Intelligence");
-		common.clickByXPath(corpUser_Obj.intelligence, "Intelligence");
+		common.isElementExist(corpUserObj.intelligence, "Intelligence");
+		common.clickByXPath(corpUserObj.intelligence, "Intelligence");
 	}
 
 	@Then("Advanced analytics")
 	public void advanced_analytics() {
-		common.isElementExist(corpUser_Obj.advancedAnalytics, "AdvancedAnalytics");
-		common.clickByXPath(corpUser_Obj.advancedAnalytics, "AdvancedAnalytics");
+		common.isElementExist(corpUserObj.advancedAnalytics, "AdvancedAnalytics");
+		common.clickByXPath(corpUserObj.advancedAnalytics, "AdvancedAnalytics");
 	}
 
 	@Then("It should navigate to Analytics page")
 	public void it_should_navigate_to_Analytics_page() {
 		common.waitExplicitlyForPageToLoad("Advanced Analytics", 60);
-		common.isElementExist(corpUser_Obj.advancedAnalytics, "AdvancedAnalytics");
+		common.isElementExist(corpUserObj.advancedAnalytics, "AdvancedAnalytics");
 	}
 
 	@When("user enters the user name in search user field")
 	public void user_enters_the_user_name_in_search_user_field() {
-		common.isElementExist(corpUser_Obj.searchUser, "searchUserName ");
-		common.getObjectByXpath(corpUser_Obj.searchUser).clear();
-		common.inputbyxpath(corpUser_Obj.searchUser, "searchUserName", "003574");
-		common.isElementExist(corpUser_Obj.runSerach, "runSerach");
-		common.clickByXPath(corpUser_Obj.runSerach, "runSerach");
+		common.isElementExist(corpUserObj.searchUser, "searchUserName ");
+		common.getObjectByXpath(corpUserObj.searchUser).clear();
+		common.inputbyxpath(corpUserObj.searchUser, "searchUserName", "003574");
+		common.isElementExist(corpUserObj.runSerach, "runSerach");
+		common.clickByXPath(corpUserObj.runSerach, "runSerach");
 	}
 
 	@Then("User details should display")
@@ -81,8 +83,8 @@ public class MyDemo extends TestExecutor {
 
 	@Then("verify the email id and network id whether it's auto populated")
 	public void verify_the_email_id_and_network_id_whether_it_s_auto_populated() {
-		String email = common.getObjectByXpath(corpUser_Obj.email).getText();
-		System.out.println("------------------------"+email);
+		String email = common.getObjectByXpath(corpUserObj.email).getText();
+		System.out.println("------------------------" + email);
 		if (email.isEmpty()) {
 			System.out.println("User email is not generated");
 			// logger.log(LogStatus.FAIL, "User email is not generated");
@@ -91,115 +93,124 @@ public class MyDemo extends TestExecutor {
 			// logger.log(LogStatus.PASS, "User email is not generated");
 		}
 
-		String networkID = common.getObjectByXpath(corpUser_Obj.networkId).getText();
-		System.out.println("------------------------========"+networkID);
-		
+		String networkID = common.getObjectByXpath(corpUserObj.networkId).getText();
+		System.out.println("------------------------========" + networkID);
+
 		if (networkID.isEmpty()) {
 			System.out.println("networkId is not generated");
-			//logger.log(LogStatus.FAIL, "networkId is not generated");
+			// logger.log(LogStatus.FAIL, "networkId is not generated");
 		} else {
 			System.out.println("networkId is generated");
-			//logger.log(LogStatus.PASS, "networkId is not generated");
+			// logger.log(LogStatus.PASS, "networkId is not generated");
 		}
 	}
 
 	@When("user clicks on Home")
 	public void user_clicks_on_Home() {
-		common.getObjectByXpath(corpUser_Obj.homeBtn).click();
+		common.getObjectByXpath(corpUserObj.homeBtn).click();
 
 	}
 
 	@Then("user should land in Home page")
 	public void user_should_land_in_Home_page() {
-		common.waitExplicitlyForPresence(corpUser_Obj.addRemoveBtn, 60);
+		common.waitExplicitlyForPresence(corpUserObj.addRemoveBtn, 60);
 	}
 
 	@When("user clicks on Add or Remove  button")
 	public void user_clicks_on_Add_or_Remove_button() {
-		common.clickByXPath(corpUser_Obj.addRemoveBtn);
-		common.waitExplicitlyForPresence(corpUser_Obj.addRemoveUserSearch, 60);
+		common.clickByXPath(corpUserObj.addRemoveBtn);
+		common.waitExplicitlyForPresence(corpUserObj.addRemoveUserSearch, 60);
 	}
 
 	@Then("Enters the username and it should display with the user information")
 	public void enters_the_username_and_it_should_display_with_the_user_information() {
-		common.getObjectByXpath(corpUser_Obj.addRemoveUserSearch).clear();
-		common.getObjectByXpath(corpUser_Obj.addRemoveUserSearch).sendKeys("003574");
+		common.getObjectByXpath(corpUserObj.addRemoveUserSearch).clear();
+		pauseSeconds(1);
+		common.getObjectByXpath(corpUserObj.addRemoveUserSearch).sendKeys("003574");
+		pauseSeconds(1);
+		common.clickByXPath(corpUserObj.userSearchBtn);
 
-		common.clickByXPath(corpUser_Obj.userSearchBtn);
+		common.waitExplicitlyForClickable(corpUserObj.addaccessUserChckbx, 150);
 
-		common.waitExplicitlyForClickable(corpUser_Obj.addaccessUserChckbx, 150);
-
-		common.clickByXPath(corpUser_Obj.addaccessUserChckbx);
-		common.clickByXPath(corpUser_Obj.ManageAccess);
+		common.clickByXPath(corpUserObj.addaccessUserChckbx);
+		common.clickByXPath(corpUserObj.ManageAccess);
 
 	}
 
 	@When("user clicks on Manage access")
 	public void user_clicks_on_Manage_access() {
-		common.clickByXPath(corpUser_Obj.ManageAccess);
+		common.clickByXPath(corpUserObj.ManageAccess);
 	}
 
 	@Then("user should can view all the access")
 	public void user_should_can_view_all_the_access() {
-		common.jsScrollToElement(corpUser_Obj.HotelLocationAccess);
+		common.jsScrollToElement(corpUserObj.HotelLocationAccess);
 
 	}
 
-	
 	@Then("clicks on Hotel Location Access")
 	public void clicks_on_Hotel_Location_Access() {
-		common.clickByXPath(corpUser_Obj.HLA_Chkbx);
-		
+		common.clickByXPath(corpUserObj.HLA_Chkbx);
+
 	}
 
 	@Then("Click on Continue")
 	public void Click_On_Continue() {
-		
-		/*Actions actions = new Actions(driver);
-		WebElement elementLocator = driver.findElement(By.xpath(corpUser_Obj.continueBtn));
-		actions.doubleClick(elementLocator).perform();*/
-		
-		WebElement element = driver.findElement(By.xpath(corpUser_Obj.continueBtn));
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
+
+		/* pauseSeconds(6);
+		 Actions actions = new Actions(driver); WebElement elementLocator =
+		 driver.findElement(By.xpath(corpUserObj.continueBtn1));
+		 actions.doubleClick(elementLocator).perform();*/
+	
+		WebElement element = driver.findElement(By.xpath(corpUserObj.continueBtn1));
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", element);
-		
-		//driver.findElement(By.xpath(corpUser_Obj.continueBtn)).click();
-		//common.clickByXPath(corpUser_Obj.continueBtn);
 	}
 
 	@Then("Enter the Hotel information and click on OK")
 	public void enter_the_Hotel_information_and_click_on_OK() {
-		common.waitExplicitlyForPresence(corpUser_Obj.completeWorkItem, 60);
-		
-		common.getObjectByXpath(corpUser_Obj.country).clear();
-		common.SelectByVisible(corpUser_Obj.country, "GERMANY", "Country selected");
-		
-		common.getObjectByXpath(corpUser_Obj.HotelName).clear();
-		common.SelectByIndex(corpUser_Obj.HotelName, 1 , "Hotel name selected");
-		
-		common.getObjectByXpath(corpUser_Obj.jobTitle).clear();
-		common.SelectByVisible(corpUser_Obj.jobTitle, "Hotel IT Admin", "Job Title selected");
-		
-		common.clickByXPath(corpUser_Obj.ok);
+		common.waitExplicitlyForPresence(corpUserObj.completeWorkItem, 60);
+
+		common.getObjectByXpath(corpUserObj.countrydrpdwn).click();
+
+		driver.findElement(By.xpath(corpUserObj.country)).sendKeys("Chile");
+		driver.findElement(By.xpath(corpUserObj.suggestion)).click();
+
+		common.getObjectByXpath(corpUserObj.hotelDrpdown).click();
+
+		driver.findElement(By.xpath(corpUserObj.HotelName)).sendKeys("iqqex");
+		driver.findElement(By.xpath(corpUserObj.suggestion)).click();
+
+		common.jsScrollToElement(corpUserObj.jobTitle);
+		common.SelectByVisible(corpUserObj.jobTitle, "Hotel IT Admin", "Job Title selected");
+		driver.findElement(By.xpath(corpUserObj.suggestion)).click();
+
+		common.clickByXPath(corpUserObj.ok);
 	}
 
 	@Then("validate whether the access is added")
 	public void validate_whether_the_access_is_added() {
+		common.waitExplicitlyForPresence(corpUserObj.status, 160);
 	}
 
 	@Then("clicks on the access to Remove")
 	public void clicks_on_the_access_to_Remove() {
-		common.clickByXPath(corpUser_Obj.removeAccess);
+		common.clickByXPath(corpUserObj.removeAccess);
 	}
-
 
 	@Then("validate whether the access is removed")
 	public void validate_whether_the_access_is_removed() {
 	}
 
-	
 	@Then("Close Browser")
 	public void closeBrowser() {
 		driver.quit();
+	}
+
+	public void pauseSeconds(int i) {
+		try {
+			Thread.sleep(1000 * 1);
+		} catch (InterruptedException e) {
+		}
 	}
 }

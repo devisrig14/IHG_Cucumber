@@ -1,6 +1,9 @@
 package pages;
 
-public class corporateUser_Obj extends TestExecutor{
+import java.util.ArrayList;
+import java.util.List;
+
+public class CorporateUserObj {
 	
 	public String username = "//input[@id='username']";
 	public String password = "//input[@id='password']";
@@ -32,9 +35,34 @@ public class corporateUser_Obj extends TestExecutor{
 	public String ok = "//button[contains(text(),'Ok')]";
 	public String removeAccess = "//a[@id='removeAccessBtn']";
 	public String continueBtn = "//button[@id='reviewAccessSubmitBtn']";
+	public String continueBtn1 = "(//button[contains(.,'Continue')])[1]";
+	public String trackMyRequest = "//div[contains(text(),'Track My Requests')]";
+	public String status = "(//*[@class='label label-state label-match-size label-success'])[1]";
+	public String countrydrpdwn = "//*[@data-input-id='field-8a53f2aa5d1048ea015d2ffbb4800baa-country']";
+	public String hotelDrpdown = "//button[@data-input-id='field-8a53f2aa5d1048ea015d2ffbb4800baa-propertyName']";
+	public String suggestion = "//a[@class='suggest-item ng-scope']";
+	public String firstname = "(//tr[@class='odd'])[1]/td[2]";
+	public String lastname = "(//tr[@class='even'])[2]/td[2]";
 	
 	
-	
+	public void dbValidation() {
+		String fname = Common.getObjectByXpath(firstname).getText();
+		String lname = Common.getObjectByXpath(lastname).getText();
+		String Email = Common.getObjectByXpath(email).getText();
+		String networkID = Common.getObjectByXpath(networkId).getText();
+		
+		List<String> userInfo = new ArrayList<String>();
+		userInfo.add(fname);
+		userInfo.add(lname);
+		userInfo.add(Email);
+		userInfo.add(networkID);
+		
+		for(int i=0; i<userInfo.size(); i++) {
+			if(dbtext.equals(userInfo.get(i)));
+		}
+		
+		
+	}
 	
 }
 
