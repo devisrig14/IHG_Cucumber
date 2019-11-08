@@ -12,6 +12,7 @@ Then User details should display
 And verify the email id and network id whether it's auto populated
 When user clicks on Home
 Then user should land in Home page 
+
 When user clicks on Add or Remove  button
 Then Enters the username and it should display with the user information
 When user clicks on Manage access
@@ -19,18 +20,21 @@ Then user should can view all the access
 Then clicks on Hotel Location Access
 And Click on Continue
 Then Enter the Hotel information and click on OK
+Then user should land in Home page
 Then validate whether the access is added
-When user clicks on Home
 Then user should land in Home page 
+
 When user clicks on Add or Remove  button
 Then Enters the username and it should display with the user information
 When user clicks on Manage access
-Then user should can view all the access
 And clicks on the access to Remove
-Then clicks on Hotel Location Access
+Then user should can view all the access
+Then clicks on Hotel Location Access to remove
 And Click on Continue
+Then Enter the Hotel information to remove and click on OK
+Then user should land in Home page
 Then validate whether the access is removed
-
+Then user should land in Home page 
 
 Then Close Browser
 

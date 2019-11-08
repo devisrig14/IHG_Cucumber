@@ -28,10 +28,13 @@ public class CorporateUserObj {
 	public String ManageAccess = "//span[text()='Manage Access']"; 
 	public String HotelLocationAccess = "//b[text()=' Hotel Location Access']";
 	public String HLA_Chkbx = "//*[@sp-label=' Hotel Location Access' and @role='checkbox']";
+	public String HLA_Chkb_Remove  = "//*[@sp-label='Remove  Hotel IT Administration' and @role='checkbox']";
 	public String completeWorkItem = "//*[text()=' Complete Work Item']";
 	public String country = "//input[@id='field-8a53f2aa5d1048ea015d2ffbb4800baa-country']";
 	public String HotelName = "//input[@id='field-8a53f2aa5d1048ea015d2ffbb4800baa-propertyName']";
+	public String HotelName_Remove = "//input[@id='field-8a53f2aa61f9904f0161f99215a8001e-propertyName']";
 	public String jobTitle = "//input[@id='field-8a53f2aa5d1048ea015d2ffbb4800baa-title']";
+	public String jobTitle_Remove = "//input[@id='field-8a53f2aa61f9904f0161f99215a8001e-title']";
 	public String ok = "//button[contains(text(),'Ok')]";
 	public String removeAccess = "//a[@id='removeAccessBtn']";
 	public String continueBtn = "//button[@id='reviewAccessSubmitBtn']";
@@ -40,12 +43,16 @@ public class CorporateUserObj {
 	public String status = "(//*[@class='label label-state label-match-size label-success'])[1]";
 	public String countrydrpdwn = "//*[@data-input-id='field-8a53f2aa5d1048ea015d2ffbb4800baa-country']";
 	public String hotelDrpdown = "//button[@data-input-id='field-8a53f2aa5d1048ea015d2ffbb4800baa-propertyName']";
+	public String jobTitleDrpdown = "//button[@data-input-id='field-8a53f2aa5d1048ea015d2ffbb4800baa-title']";
 	public String suggestion = "//a[@class='suggest-item ng-scope']";
 	public String firstname = "(//tr[@class='odd'])[1]/td[2]";
 	public String lastname = "(//tr[@class='even'])[2]/td[2]";
+	public String hoteldrpdown_Remove = "//button[@data-input-id='field-8a53f2aa61f9904f0161f99215a8001e-propertyName']";
+	public String jobTitleDrpdown_Remove = "//button[@data-input-id='field-8a53f2aa61f9904f0161f99215a8001e-title']";
+	public String removeConfirmarion_Chckbx = "//input[@type='checkbox']";
+	 
 	
-	
-	public void dbValidation() {
+	/*public void dbValidation() {
 		String fname = Common.getObjectByXpath(firstname).getText();
 		String lname = Common.getObjectByXpath(lastname).getText();
 		String Email = Common.getObjectByXpath(email).getText();
@@ -62,7 +69,7 @@ public class CorporateUserObj {
 		}
 		
 		
-	}
+	}*/
 	
 }
 

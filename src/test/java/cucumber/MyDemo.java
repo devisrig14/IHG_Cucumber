@@ -22,7 +22,6 @@ public class MyDemo extends TestExecutor {
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
 			driver.get("http://myid-int.ihg.com");
-			Thread.sleep(10000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,12 +50,14 @@ public class MyDemo extends TestExecutor {
 	public void click_on_Intelligence() {
 		common.isElementExist(corpUserObj.intelligence, "Intelligence");
 		common.clickByXPath(corpUserObj.intelligence, "Intelligence");
+		pauseSeconds(2);
 	}
 
 	@Then("Advanced analytics")
 	public void advanced_analytics() {
 		common.isElementExist(corpUserObj.advancedAnalytics, "AdvancedAnalytics");
 		common.clickByXPath(corpUserObj.advancedAnalytics, "AdvancedAnalytics");
+		pauseSeconds(2);
 	}
 
 	@Then("It should navigate to Analytics page")
@@ -118,6 +119,7 @@ public class MyDemo extends TestExecutor {
 
 	@When("user clicks on Add or Remove  button")
 	public void user_clicks_on_Add_or_Remove_button() {
+		
 		common.clickByXPath(corpUserObj.addRemoveBtn);
 		common.waitExplicitlyForPresence(corpUserObj.addRemoveUserSearch, 60);
 	}
@@ -157,10 +159,10 @@ public class MyDemo extends TestExecutor {
 	@Then("Click on Continue")
 	public void Click_On_Continue() {
 
-		/* pauseSeconds(6);
-		 Actions actions = new Actions(driver); WebElement elementLocator =
-		 driver.findElement(By.xpath(corpUserObj.continueBtn1));
-		 actions.doubleClick(elementLocator).perform();*/
+		 pauseSeconds(6);
+		 /*Actions actions = new Actions(driver); 
+		 WebElement elementLocator = driver.findElement(By.xpath(corpUserObj.continueBtn1));
+		 actions.click(elementLocator).perform();*/
 	
 		WebElement element = driver.findElement(By.xpath(corpUserObj.continueBtn1));
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -172,25 +174,81 @@ public class MyDemo extends TestExecutor {
 		common.waitExplicitlyForPresence(corpUserObj.completeWorkItem, 60);
 
 		common.getObjectByXpath(corpUserObj.countrydrpdwn).click();
-
+		pauseSeconds(2);
 		driver.findElement(By.xpath(corpUserObj.country)).sendKeys("Chile");
+		pauseSeconds(2);
 		driver.findElement(By.xpath(corpUserObj.suggestion)).click();
+		pauseSeconds(1);
 
 		common.getObjectByXpath(corpUserObj.hotelDrpdown).click();
-
+		pauseSeconds(2);
 		driver.findElement(By.xpath(corpUserObj.HotelName)).sendKeys("iqqex");
+		pauseSeconds(1);
 		driver.findElement(By.xpath(corpUserObj.suggestion)).click();
-
+		pauseSeconds(1);
+		
 		common.jsScrollToElement(corpUserObj.jobTitle);
-		common.SelectByVisible(corpUserObj.jobTitle, "Hotel IT Admin", "Job Title selected");
+		common.getObjectByXpath(corpUserObj.jobTitleDrpdown).click();
+		pauseSeconds(2);
+		driver.findElement(By.xpath(corpUserObj.jobTitle)).sendKeys("Hotel IT admin");
+		pauseSeconds(1);
 		driver.findElement(By.xpath(corpUserObj.suggestion)).click();
-
+		
+		
+		pauseSeconds(3);
+		common.jsScrollToElement(corpUserObj.ok);
 		common.clickByXPath(corpUserObj.ok);
 	}
+	
+	@Then("Enter the Hotel information to remove and click on OK")
+	public void enter_the_Hotel_information_to_remove_and_click_on_OK() {
+		
+		common.getObjectByXpath(corpUserObj.hoteldrpdown_Remove).click();
+		pauseSeconds(2);
+		driver.findElement(By.xpath(corpUserObj.HotelName_Remove)).sendKeys("iqqex");
+		pauseSeconds(1);
+		driver.findElement(By.xpath(corpUserObj.suggestion)).click();
+		pauseSeconds(1);
+		
+		common.jsScrollToElement(corpUserObj.jobTitle_Remove);
+		common.getObjectByXpath(corpUserObj.jobTitleDrpdown_Remove).click();
+		pauseSeconds(2);
+		driver.findElement(By.xpath(corpUserObj.jobTitle_Remove)).sendKeys("Hotel IT admin");
+		pauseSeconds(1);
+		driver.findElement(By.xpath(corpUserObj.suggestion)).click();
+		
+		pauseSeconds(3);
+		common.jsScrollToElement(corpUserObj.ok);
+		common.clickByXPath(corpUserObj.ok);
+		
+		pauseSeconds(3);
+		common.getObjectByXpath(corpUserObj.removeConfirmarion_Chckbx);
+		common.clickByXPath(corpUserObj.ok);
+		
+	}
+
 
 	@Then("validate whether the access is added")
 	public void validate_whether_the_access_is_added() {
+		common.getObjectByXpath(corpUserObj.trackMyRequest);
 		common.waitExplicitlyForPresence(corpUserObj.status, 160);
+		//String status = common.getObjectByXpath(corpUserObj.status).getText();
+		
+		/*if(status.equalsIgnoreCase("complete")) {
+			
+		}else {
+			driver.navigate().refresh();
+			status = common.getObjectByXpath(corpUserObj.status).getText();
+			if(status.equalsIgnoreCase("complete")){
+				
+			}
+		}*/
+	}
+	
+	@Then("clicks on Hotel Location Access to remove")
+	public void clicks_on_Hotel_Location_Access_to_remove() {
+		common.clickByXPath(corpUserObj.HLA_Chkb_Remove);
+		
 	}
 
 	@Then("clicks on the access to Remove")
@@ -200,6 +258,8 @@ public class MyDemo extends TestExecutor {
 
 	@Then("validate whether the access is removed")
 	public void validate_whether_the_access_is_removed() {
+		common.getObjectByXpath(corpUserObj.trackMyRequest);
+		common.waitExplicitlyForPresence(corpUserObj.status, 160);
 	}
 
 	@Then("Close Browser")
