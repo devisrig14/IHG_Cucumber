@@ -28,10 +28,8 @@ When user clicks on Add or Remove  button
 Then Enters the username and it should display with the user information
 When user clicks on Manage access
 And clicks on the access to Remove
-Then user should can view all the access
 Then clicks on Hotel Location Access to remove
 And Click on Continue
-Then Enter the Hotel information to remove and click on OK
 Then user should land in Home page
 Then validate whether the access is removed
 Then user should land in Home page 

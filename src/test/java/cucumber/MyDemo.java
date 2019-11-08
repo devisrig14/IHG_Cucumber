@@ -126,13 +126,14 @@ public class MyDemo extends TestExecutor {
 
 	@Then("Enters the username and it should display with the user information")
 	public void enters_the_username_and_it_should_display_with_the_user_information() {
+		common.waitExplicitlyForClickable(corpUserObj.addaccessUserChckbx, 200);
 		common.getObjectByXpath(corpUserObj.addRemoveUserSearch).clear();
 		pauseSeconds(1);
 		common.getObjectByXpath(corpUserObj.addRemoveUserSearch).sendKeys("003574");
 		pauseSeconds(1);
 		common.clickByXPath(corpUserObj.userSearchBtn);
 
-		common.waitExplicitlyForClickable(corpUserObj.addaccessUserChckbx, 150);
+		common.waitExplicitlyForClickable(corpUserObj.addaccessUserChckbx, 200);
 
 		common.clickByXPath(corpUserObj.addaccessUserChckbx);
 		common.clickByXPath(corpUserObj.ManageAccess);
@@ -150,6 +151,7 @@ public class MyDemo extends TestExecutor {
 
 	}
 
+	
 	@Then("clicks on Hotel Location Access")
 	public void clicks_on_Hotel_Location_Access() {
 		common.clickByXPath(corpUserObj.HLA_Chkbx);
@@ -230,19 +232,29 @@ public class MyDemo extends TestExecutor {
 
 	@Then("validate whether the access is added")
 	public void validate_whether_the_access_is_added() {
-		common.getObjectByXpath(corpUserObj.trackMyRequest);
-		common.waitExplicitlyForPresence(corpUserObj.status, 160);
-		//String status = common.getObjectByXpath(corpUserObj.status).getText();
+		common.getObjectByXpath(corpUserObj.trackMyRequest).click();
+		//common.waitExplicitlyForPresence(corpUserObj.status, 160);
+		String status = common.getObjectByXpath(corpUserObj.status).getText();
+		System.out.println("================================="+status);
 		
-		/*if(status.equalsIgnoreCase("complete")) {
-			
-		}else {
+		while(!status.equalsIgnoreCase("complete")) {
+			System.out.println("In while loop");
+			pauseSeconds(20);
 			driver.navigate().refresh();
-			status = common.getObjectByXpath(corpUserObj.status).getText();
-			if(status.equalsIgnoreCase("complete")){
-				
+			
+			if (common.getSizeOfElementsSelected(corpUserObj.status) != 0) {
+				status = common.getObjectByXpath(corpUserObj.status).getText();
+				System.out.println("After refresh status ========== "+status);
+				continue;
+			}else {
+				System.out.println("else loop");
+				break;
 			}
-		}*/
+			
+		}
+		
+		common.getObjectByXpath(corpUserObj.homeBtn).click();
+		
 	}
 	
 	@Then("clicks on Hotel Location Access to remove")

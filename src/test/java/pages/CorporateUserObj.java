@@ -27,6 +27,7 @@ public class CorporateUserObj {
 	public String addaccessUserChckbx = "(//*[@role='checkbox'])[1]";
 	public String ManageAccess = "//span[text()='Manage Access']"; 
 	public String HotelLocationAccess = "//b[text()=' Hotel Location Access']";
+	public String HotelIt_Remove = "//b[text()=' Hotel IT Administration']";
 	public String HLA_Chkbx = "//*[@sp-label=' Hotel Location Access' and @role='checkbox']";
 	public String HLA_Chkb_Remove  = "//*[@sp-label='Remove  Hotel IT Administration' and @role='checkbox']";
 	public String completeWorkItem = "//*[text()=' Complete Work Item']";
@@ -40,7 +41,7 @@ public class CorporateUserObj {
 	public String continueBtn = "//button[@id='reviewAccessSubmitBtn']";
 	public String continueBtn1 = "(//button[contains(.,'Continue')])[1]";
 	public String trackMyRequest = "//div[contains(text(),'Track My Requests')]";
-	public String status = "(//*[@class='label label-state label-match-size label-success'])[1]";
+	public String status = "//*[@class='text-info ng-binding']//..//..//..//..//..//..//..//..//..//*[@class='label label-state label-match-size label-info']";
 	public String countrydrpdwn = "//*[@data-input-id='field-8a53f2aa5d1048ea015d2ffbb4800baa-country']";
 	public String hotelDrpdown = "//button[@data-input-id='field-8a53f2aa5d1048ea015d2ffbb4800baa-propertyName']";
 	public String jobTitleDrpdown = "//button[@data-input-id='field-8a53f2aa5d1048ea015d2ffbb4800baa-title']";
