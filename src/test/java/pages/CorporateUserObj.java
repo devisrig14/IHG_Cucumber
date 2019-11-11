@@ -51,6 +51,8 @@ public class CorporateUserObj {
 	public String hoteldrpdown_Remove = "//button[@data-input-id='field-8a53f2aa61f9904f0161f99215a8001e-propertyName']";
 	public String jobTitleDrpdown_Remove = "//button[@data-input-id='field-8a53f2aa61f9904f0161f99215a8001e-title']";
 	public String removeConfirmarion_Chckbx = "//input[@type='checkbox']";
+	public String userMenu = "//a[@id='userMenu']";
+	public String logOut = "//a[normalize-space(.) = 'Logout']";
 	 
 	
 	/*public void dbValidation() {

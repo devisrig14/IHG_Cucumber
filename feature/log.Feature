@@ -21,7 +21,7 @@ Then clicks on Hotel Location Access
 And Click on Continue
 Then Enter the Hotel information and click on OK
 Then user should land in Home page
-Then validate whether the access is added
+Then validate whether the access is added or removed
 Then user should land in Home page 
 
 When user clicks on Add or Remove  button
@@ -31,8 +31,10 @@ And clicks on the access to Remove
 Then clicks on Hotel Location Access to remove
 And Click on Continue
 Then user should land in Home page
-Then validate whether the access is removed
+Then validate whether the access is added or removed
 Then user should land in Home page 
+
+Then signout from the application
 
 Then Close Browser
 

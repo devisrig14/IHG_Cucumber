@@ -230,7 +230,7 @@ public class MyDemo extends TestExecutor {
 	}
 
 
-	@Then("validate whether the access is added")
+	@Then("validate whether the access is added or removed")
 	public void validate_whether_the_access_is_added() {
 		common.getObjectByXpath(corpUserObj.trackMyRequest).click();
 		//common.waitExplicitlyForPresence(corpUserObj.status, 160);
@@ -239,7 +239,7 @@ public class MyDemo extends TestExecutor {
 		
 		while(!status.equalsIgnoreCase("complete")) {
 			System.out.println("In while loop");
-			pauseSeconds(20);
+			pauseSeconds(100);
 			driver.navigate().refresh();
 			
 			if (common.getSizeOfElementsSelected(corpUserObj.status) != 0) {
@@ -272,6 +272,12 @@ public class MyDemo extends TestExecutor {
 	public void validate_whether_the_access_is_removed() {
 		common.getObjectByXpath(corpUserObj.trackMyRequest);
 		common.waitExplicitlyForPresence(corpUserObj.status, 160);
+	}
+	
+	@Then("signout from the application")
+	public void signout_from_the_application() {
+		common.clickByXPath(corpUserObj.userMenu);
+		common.clickByXPath(corpUserObj.logOut);
 	}
 
 	@Then("Close Browser")
